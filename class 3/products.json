@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Board Marker",
+        "price": 100,
+        "dc": 50
+    },
+    {
+        "id": 2,
+        "name": "Books",
+        "price": 7000,
+        "dc": 100
+    },
+    {
+        "id": 3,
+        "name": "Note Booksr",
+        "price": 5000,
+        "dc": 100
+    },
+    {
+        "id": 4,
+        "name": "Fan",
+        "price": 15000,
+        "dc": 150
+    },
+    {
+        "id": 5,
+        "name": "Laptop",
+        "price": 90000,
+        "dc": 300
+    },
+    {
+        "id": 6,
+        "name": "LED Bulbs",
+        "price": 2000,
+        "dc": 100
+    },
+    {
+        "id": 7,
+        "name": "Projector",
+        "price": 15000,
+        "dc": 200
+    }
+]

@@ -34,7 +34,7 @@ let students = [
 //     })
 // })
 
-
+// Query Paraams
 app.get("/students", (req, res) => {
     let request = req.query.age;
     console.log(request)
@@ -49,12 +49,14 @@ app.get("/students", (req, res) => {
     })
 })
 
-app.get("/students/:age", (req, res) => {
-    let request = req.params.age;
+
+// Params 
+app.get("/students/:rollNum", (req, res) => {
+    let request = req.params.rollNum;
     console.log(request)
     let std = students
     if(request){
-         std = students.find((std) => std.age == request)
+         std = students.find((std) => std.rollNum == request)
     
     }
     res.send({
