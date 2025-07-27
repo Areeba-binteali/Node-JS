@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Buy groceries",
+        "description": "Milk, Bread, Eggs",
+        "completed": true
+    },
+    {
+        "id": 2,
+        "title": "Walk the dog",
+        "description": "Around the block for 30 minutes",
+        "completed": true
+    },
+    {
+        "id": 3,
+        "title": "Study JavaScript",
+        "description": "Complete functions and arrays section",
+        "completed": false
+    },
+    {
+        "id": 5,
+        "title": "Clean workspace",
+        "description": "Organize desk and delete unused files",
+        "completed": false
+    },
+    {
+        "id": 6,
+        "title": "Workout",
+        "description": "30-minute home workout session",
+        "completed": true
+    },
+    {
+        "id": 7,
+        "title": "Read a book",
+        "description": "Read 20 pages of a novel",
+        "completed": false
+    }
+]
