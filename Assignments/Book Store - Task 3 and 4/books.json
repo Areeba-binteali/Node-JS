@@ -1,1 +1,37 @@
-[]
+[
+      {
+            "id": 0,
+            "title": "The Sky Beneath",
+            "author": "Liam Carter",
+            "genre": "Science Fiction",
+            "price": 19.99
+      },
+      {
+            "id": 1,
+            "title": "React in Real Life",
+            "author": "Daniel Brooks",
+            "genre": "Technology",
+            "price": 29.99
+      },
+      {
+            "id": 3,
+            "title": "Secrets of the Past",
+            "author": "Jamal Wright",
+            "genre": "Historical Fiction",
+            "price": 17.75
+      },
+      {
+            "id": 4,
+            "title": "The Quiet Island",
+            "author": "Emily Dawson",
+            "genre": "Drama",
+            "price": 11.25
+      },
+      {
+            "id": 5,
+            "title": "Code of Shadows",
+            "author": "Rachel Monroe",
+            "genre": "Thriller",
+            "price": 22.99
+      }
+]

@@ -1,8 +1,8 @@
 [
-    {
-        "id": 0,
-        "name": "Areeba",
-        "emailAddress": "areeba42101@gmail.com",
-        "password": "$2b$10$JVBWUZtet7AdS7SnHhKLP.Kl4.2t0bN0jzKfDifrJSqaMzjvEAQQS"
-    }
+     {
+          "id": 0,
+          "name": "Areeba",
+          "emailAddress": "areeba42101@gmail.com",
+          "password": "$2b$10$JVBWUZtet7AdS7SnHhKLP.Kl4.2t0bN0jzKfDifrJSqaMzjvEAQQS"
+     }
 ]
