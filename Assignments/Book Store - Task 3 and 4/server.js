@@ -6,7 +6,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Geeting all the books
+// Geeting all the books - modified to get filter data on the basis of author, price and genre
 app.get("/books", (req, res) => {
     let filterByAuthor = req.query.author;
     let minPrice = parseFloat(req.query.minPrice);
