@@ -1,15 +1,20 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("./models/user");
-const MONGODB_URI = "mongodb://localhost:27017/ecomStore";
+const MONGODB_URI = process.env.MONGODB_URI; 
 const jwt = require("jsonwebtoken");
 const Post = require("./models/post");
+const authMiddleware = require("./middleware/authMiddleware");
+const logReqBody = require("./middleware/logReqBody");
 
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(logReqBody)
 
 
 // Connecting mongoose
@@ -17,12 +22,19 @@ mongoose.connect(MONGODB_URI)
     .then(() => { console.log('Connected!'); })
     .catch(err => console.log(err))
 
+
+console.log("JWT_TOKEN = " + process.env.JWT_TOKEN);
+
 // users
-app.get("/api/users", async (req, res) => {
+app.get("/api/users", authMiddleware, async (req, res) => {
     try {
         const user = await User.find();
+        const userId = req.userId;
+        const posts = await Post.find({author: user._id});
+        console.log(posts);
         res.status(200).send({
             message: "users data",
+            relatedPosts: posts,
             data: user,
         })
     } catch (error) {
@@ -92,9 +104,9 @@ app.post("/api/users/signin", async (req, res) => {
 });
 
 // Create Post
-app.post("/api/posts", async (req, res) => {
+app.post("/api/posts", authMiddleware, async (req, res) => {
     try{
-        const userId = '68860631901ac1dce71b502a';
+        const userId = req.userId;
         const { content } = req.body;
         const newPost = new Post({ content: content, createdDate: new Date(), author: userId });
         await newPost.save();
@@ -108,7 +120,7 @@ app.post("/api/posts", async (req, res) => {
 })
 
 // get all posts
-app.get("/api/posts", async (req, res) => {
+app.get("/api/posts", authMiddleware, async (req, res) => {
     try {
         const posts = await Post.find().populate("author");
         return res.send({
