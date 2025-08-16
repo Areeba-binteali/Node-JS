@@ -7,11 +7,11 @@ const authRouter = require("./controllers/authRoute");
 
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 app.use(logReqBody);
 
 // router middleware
-app.use(authRouter)
+app.use('/api/v1/', authRouter)
 
 
 const PORT = process.env.PORT
