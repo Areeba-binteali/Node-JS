@@ -2,21 +2,6 @@ const bcrypt  = require("bcrypt");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken")
 
-const signupController =  async (req, res) => {
-    try {
-        const newUser = req.body;
-        const password = await bcrypt.hash(newUser.password, 10)
-        const user = new User({ ...newUser, password: password });
-        await user.save();
-        res.send({
-            data: user,
-            message: "success",
-        })
-    } catch (error) {
-        res.status(500).send({ data: null, success: false, error });
-    }
-};
-
 const signinController = async (req, res) => {
     try {
         const { emailAddress, password } = req.body;
@@ -59,23 +44,6 @@ const signinController = async (req, res) => {
     }
 }
 
-const getAllUsersforAdmin = async (req, res) => {
-    try {
-        const users = await User.find();
-        return res.status(200).send({
-            success: true,
-            data: users
-        })
-    } catch (error) {
-        return res.status(401).send({
-            success: false,
-        })
-    }
-}
-
-
 module.exports = {
-    signupController,
-    getAllUsersforAdmin,
     signinController,
 }
