@@ -6,30 +6,30 @@ const { getAllCoursesForAdmin, createNewCourse, updateCourse, deleteCourse } = r
 const adminRouter = require("express").Router();
 
 // Get all Users
-adminRouter.get("/admin/get-all-users", authMiddleware, adminOnly, getAllUsersforAdmin);
+adminRouter.get("/get-all-users", authMiddleware, adminOnly, getAllUsersforAdmin);
 
 // Get all Classes
-adminRouter.get("/admin/get-all-classes", authMiddleware, adminOnly, getAllClassesForAdmin);
+adminRouter.get("/get-all-classes", authMiddleware, getAllClassesForAdmin);
 
 // Create New Class
-adminRouter.post("/admin/create-new-class", authMiddleware, adminOnly, createNewClass);
+adminRouter.post("/create-new-class", authMiddleware, adminOnly, createNewClass);
 
 // Update Class
-adminRouter.put("/admin/class/:id", authMiddleware, adminOnly, updateClass);
+adminRouter.put("/class/:id", authMiddleware, adminOnly, updateClass);
 
 // Delete Class
-adminRouter.delete("/admin/class/:id", authMiddleware, adminOnly, deleteClass);
+adminRouter.delete("/class/:id", authMiddleware, adminOnly, deleteClass);
 
 // Get all Courses
-adminRouter.get("/admin/get-all-courses", authMiddleware, adminOnly, getAllCoursesForAdmin);
+adminRouter.get("/get-all-courses", authMiddleware, getAllCoursesForAdmin);
 
 // Create New Course
-adminRouter.post("/admin/create-new-course", authMiddleware, adminOnly, createNewCourse);
+adminRouter.post("/create-new-course", authMiddleware, adminOnly, createNewCourse);
 
 // Update Course
-adminRouter.put("/admin/course/:id", authMiddleware, adminOnly, updateCourse);
+adminRouter.put("/course/:id", authMiddleware, adminOnly, updateCourse);
 
 // Delete Course
-adminRouter.delete("/admin/course/:id", authMiddleware, adminOnly, deleteCourse);
+adminRouter.delete("/course/:id", authMiddleware, adminOnly, deleteCourse);
 
 module.exports = adminRouter

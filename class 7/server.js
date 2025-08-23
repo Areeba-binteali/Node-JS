@@ -13,7 +13,7 @@ app.use(logReqBody);
 
 // router middleware
 app.use('/api/v1/', publicRouter)
-app.use('/api/v3/', adminRouter)
+app.use('/api/v3/admin/', adminRouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
