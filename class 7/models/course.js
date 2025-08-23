@@ -18,9 +18,13 @@ const courseSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
     duration: {
-        type: Number, // in weeks or months
-        min: 1
+        type: String,
+        default: "1 Months"
     },
     startDate: Date,
     endDate: Date,

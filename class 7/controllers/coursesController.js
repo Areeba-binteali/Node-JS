@@ -1,11 +1,11 @@
-const Class = require("../models/class")
+const Course = require("../models/course")
 
-const getAllClassesForAdmin = async (req, res) => {
+const getAllCoursesForAdmin = async (req, res) => {
     try {
-        const Classes = await Class.find();
+        const Courses = await Course.find();
         return res.status(200).send({
             success: true,
-            data: Classes,
+            data: Courses,
         })
     } catch (error) {
         return res.status(401).send({
@@ -14,16 +14,16 @@ const getAllClassesForAdmin = async (req, res) => {
     }
 }
 
-const createNewClass = async (req, res) => {
+const createNewCourse = async (req, res) => {
     try {
-        let { className, year, section } = req.body;
-        if (!className || !year || !section) {
+        let { title, description, duration, classId } = req.body;
+        if (!title || !description || !duration) {
             res.status(400).send({
                 success: false,
-                message: "Please provide valid className, year or section"
+                message: "Please provide valid course name, description or duration"
             })
         }
-        let addNew = new Class({ className: className, year: year, section: section, createdAt: new Date() })
+        let addNew = new Course({ title: title, description: description, duration: duration, createdAt: new Date(), classId: classId  })
         await addNew.save();
         res.status(201).send({
             success: true,
@@ -33,28 +33,28 @@ const createNewClass = async (req, res) => {
     catch (error) {
         return res.status(500).send({
             success: false,
-            message: "Server Error"
+            message: "Server Error",
         })
     }
 }
 
-const updateClass = async (req, res) => {
+const updateCourse = async (req, res) => {
     try {
         const targetId = req.params.id;
-        const { className, year, section, classTeacher, students=[] } = req.body;
-        if(!Array.isArray(students)){
+        const { title, description, duration, teacher, tags=[], startDate, endDate, students=[] } = req.body;
+        if(!Array.isArray(students) || !Array.isArray(tags)){
             return res.status(400).send({
                 success: false,
                 message: "students must be an array of string"
             })
         }
 
-        let updatedClass = await Class.findByIdAndUpdate(targetId, { className, year, section, classTeacher, students }, { new: true })
-        updatedClass.save();
+        let updatedCourse = await Course.findByIdAndUpdate(targetId, { title, description, duration, teacher, startDate, endDate, tags, students }, { new: true })
+        updatedCourse.save();
 
         return res.status(200).send({
             success: true,
-            data: updatedClass
+            data: updatedCourse
         })
     } catch (error) {
         res.status(500).send({
@@ -64,19 +64,19 @@ const updateClass = async (req, res) => {
     }
 }
 
-const deleteClass = async (req, res) => {
+const deleteCourse = async (req, res) => {
     try {
         const targetId = req.params.id
-        const deleteClass = await Class.findByIdAndDelete(targetId);
-        if (!deleteClass){
+        const deleteCourse = await Course.findByIdAndDelete(targetId);
+        if (!deleteCourse){
             return res.status(404).send({
                 success: false,
-                message: "Class not Found"
+                message: "Course not Found"
             })
         }
         return res.status(200).send({
             success: true,
-            message: "Class Deleted Successfully"
+            message: "Course Deleted Successfully"
         });
     } catch (error) {
         res.status(500).send({
@@ -87,8 +87,8 @@ const deleteClass = async (req, res) => {
 }
 
 module.exports = {
-    getAllClassesForAdmin,
-    createNewClass,
-    updateClass,
-    deleteClass
+    getAllCoursesForAdmin,
+    createNewCourse,
+    updateCourse,
+    deleteCourse
 }
