@@ -14,6 +14,29 @@ const getAllUsersforAdmin = async (req, res) => {
     }
 }
 
+const getAvgAgeOfStd = async (req, res) => {
+    try {
+        // console.log(req.userId, req.userRole);
+
+        const result = await User.aggregate([
+            { $match: { role: "student", } }, 
+            { 
+                $group: { 
+                    role: "$role", 
+                    avgSuccess: { 
+                        $avg: { 
+                            $subtract: [new Date(), "$dob"] 
+                        } 
+                    } 
+                } 
+            }]);
+        return res.send({ data: result, })
+    } catch (error) {
+        return res.status(500).send({ message: error.message, })
+    }
+}
+
 module.exports = {
+    getAvgAgeOfStd,
     getAllUsersforAdmin,
 }

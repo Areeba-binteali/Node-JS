@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-// const ObjectId = Schema.ObjectId;
 
 const userSchema = new Schema({
     userName: {
@@ -25,11 +24,12 @@ const userSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['student', 'teacher', 'admin'], // fixed roles
-        default: 'student'
+        enum: ['doctor', 'patient', 'staff', 'admin'],
+        default: 'patient',
+        required: true
     },
     profileImage: {
-        type: String, // store image URL
+        type: String,
         default: ''
     },
     createdAt: {
@@ -41,7 +41,7 @@ const userSchema = new Schema({
     }
 });
 
-userSchema.index({ emailAddress: 1 })
+userSchema.index({ emailAddress: 1 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
